@@ -19,84 +19,100 @@
 /******************
 * BASE
 ******************/
-body {
-  /*margin: 50px 100px;*/
 
+body {
+    /*margin: 50px 100px;*/
 }
+
 /******************
 * LAYOUTS
 ******************/
+
 .l-grid {
-  margin: 0 auto;
-  padding: 0;
+    margin: 0 auto;
+    padding: 0;
 }
+
 .l-grid > * {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  float: left;
-  width: 90%;
-  margin: 5px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 90%;
+    margin: 5px;
 }
+
 /******************
 * Modules
 ******************/
+
 .socialitem-instagram > img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
+
 .socialitem > .socialitem-publishdate {
-  display: block;
-  margin-top: 5px;
-}
+    display: block;
+    margin-top: 5px;
+}   
+
 .socialitem::before {
-  float: right;
-  margin-top: -10px;
-  margin-right: -10px;
+    float: right;
+    margin-top: -10px;
+    margin-right: -10px;
 }
+
 .socialitem-instagram::before {
-  content: "Instagram";
-  position: absolute;
-  right: 10px;
+    content: "Instagram";
+    position: absolute;
+    right: 10px;
 }
+
 .socialitem-facebook::before {
-  content: "Facebook";
+    content: "Facebook";
 }
+
 .socialitem-twitter::before {
-  content: "Twitter";
+    content: "Twitter";
 }
 /******************
 * Theming
 ******************/
+
 body {
-  background-color: #111;
-  color: #999;
-  font-weight: 200;
-  font-family: "Helvetica Neue", Helvetica;
+    background-color: #111;
+    color: #999;
+    font-weight: 200;
+    font-family: "Helvetica Neue", Helvetica;
 }
+
 .socialitem {
-  background: #222;
-  padding: 10px;
+    background: #222;
+    padding: 10px;
 }
+
 .socialitem > .socialitem-publishdate {
-  font-size: 10px;
-  color: #666;
+    font-size: 10px;
+    color: #666;
 }
+
 .socialitem-title {
-  display: block;
-  font-weight: 200;
-  font-size: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
+    display: block;
+    font-weight: 200;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
 }
+
 .socialitem::before {
-  font-size: 12px;
-  padding: 10px;
-  color: #3a3a3a;
-  margin-left: 5px;
+    font-size: 12px;
+    padding: 10px;
+    color: #3a3a3a;
+    margin-left: 5px;
 }
+
 .socialitem-instagram::before {
-  background-color: #222;
+    background-color: #222;
 }
