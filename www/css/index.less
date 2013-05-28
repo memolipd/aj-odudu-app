@@ -16,12 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+/******************
+* Variables
+******************/
+
+@unit: 20px;
+@darkred: #ab5057;
+@grey: #a9a9a9;
+
 /******************
 * BASE
 ******************/
 
 body {
+    margin: 0;
     /*margin: 50px 100px;*/
+
 }
 
 /******************
@@ -38,8 +49,8 @@ body {
     margin: 0;
     padding: 0;
     float: left;
-    width: 90%;
-    margin: 5px;
+    width: 100%;
+    margin: 0;
 }
 
 /******************
@@ -49,70 +60,88 @@ body {
 .socialitem-instagram > img {
     max-width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    margin-top: @unit;
 }
 
 .socialitem > .socialitem-publishdate {
     display: block;
-    margin-top: 5px;
+    margin-top: @unit/2;
 }   
 
 .socialitem::before {
     float: right;
-    margin-top: -10px;
-    margin-right: -10px;
+    //margin-top: -10px;
+    //margin-right: -10px;
 }
 
-.socialitem-instagram::before {
-    content: "Instagram";
-    position: absolute;
-    right: 10px;
-}
-
-.socialitem-facebook::before {
-    content: "Facebook";
-}
-
-.socialitem-twitter::before {
-    content: "Twitter";
-}
 /******************
 * Theming
 ******************/
 
 body {
-    background-color: #111;
-    color: #999;
-    font-weight: 200;
+    font-weight: bold;
     font-family: "Helvetica Neue", Helvetica;
+    text-align: left;
+    word-wrap: break-word;
 }
 
+.heading {
+    text-align: center;
+    color: @darkred;
+}
+
+.spinner {
+    margin: 45%;
+    width: 10%;
+}
+
+
 .socialitem {
-    background: #222;
-    padding: 10px;
+    padding: @unit 0;
+    text-align: center;
+}
+
+.socialitem:nth-child(4n+1)
+{
+    color: #fff;
+    background-image:url('../img/pink.png');
+}
+
+.socialitem:nth-child(4n+2)
+{
+    background: #fff;
+    color: @grey;
+}
+
+.socialitem:nth-child(4n+3)
+{
+    background-image:url('../img/orange.png');
+    color: #fff;
+}
+
+.socialitem:nth-child(4n+4)
+{
+    background-image:url('../img/black.png');
+    color: @grey;
+}
+
+.socialitem a {
+    color: @darkred;
 }
 
 .socialitem > .socialitem-publishdate {
-    font-size: 10px;
-    color: #666;
+    font-size: @unit/1.4;
+    //color: #666;
+    padding-left: @unit;
+    text-align: left;
+    text-transform: uppercase;
 }
 
 .socialitem-title {
     display: block;
-    font-weight: 200;
-    font-size: 100%;
     margin: 0;
-    padding: 0;
-    font-size: 12px;
-}
-
-.socialitem::before {
-    font-size: 12px;
-    padding: 10px;
-    color: #3a3a3a;
-    margin-left: 5px;
-}
-
-.socialitem-instagram::before {
-    background-color: #222;
+    padding: @unit;
+    font-size: @unit*1.6;
+    text-align: left;
+    line-height: @unit*2.2;
 }

@@ -21,87 +21,94 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>100 Shapes</title>
     </head>
     <body>
-        <h1>AJ's Stuff</h>
+        <div class="heading">
+            <h1>AJ Odudu</h1>
+        </div>
+
         <ol id="feed" class="socialitems l-grid">
         </ol>
+        
+        <img class="spinner" src="img/spinner.gif">
+
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
-    </body>
-</html>
+        <script type="text/javascript" src="js/vender/jquery.min.js"></script>
+        <script type="text/javascript" src="js/vender/underscore-min.js"></script>
+        <script type="text/javascript" src="js/vender/jquery.imagesloaded.min.js"></script>
+        <script type="text/javascript" src="js/vender/jquery.timeago.min.js"></script> 
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.1.0/jquery.timeago.min.js"></script>       
+        <script type="text/javascript">
+            jQuery(function(){
 
-<script type="text/javascript">
-        jQuery(function(){
+                var PIPE_URL = "http://pipes.yahoo.com/pipes/pipe.run?_id=cb07c7bcfe9250d3ff869ac83fc1fd3e&_render=json&numItems=15";
 
-            var PIPE_URL = "http://pipes.yahoo.com/pipes/pipe.run?_id=cb07c7bcfe9250d3ff869ac83fc1fd3e&_render=json&numItems=15";
+                //var PIPE_URL = "/backup";
 
-            jQuery.getJSON(PIPE_URL, function(data) {
+                jQuery.getJSON(PIPE_URL, function(data) {
 
-                var twitter_template = jQuery("#twitter_template").html();
-                var facebook_template = jQuery("#facebook_template").html();
-                var instagram_template = jQuery("#instagram_template").html();
+                    var twitter_template = jQuery("#twitter_template").html();
+                    var facebook_template = jQuery("#facebook_template").html();
+                    var instagram_template = jQuery("#instagram_template").html();
 
-                _.each(data.value.items,function(i){
+                    _.each(data.value.items,function(i){
 
-                    i = _.extend(i, {
-                        'date': new Date(i.pubDate)
+                        i = _.extend(i, {
+                            'date': new Date(i.pubDate)
+                        });
+
+                        switch(i.author){
+                            case "twitter":
+                                jQuery("#feed").append(_.template(twitter_template,{i:i}));
+                                break;
+                            case "facebook":
+                                jQuery("#feed").append(_.template(facebook_template,{i:i}));
+                                break;
+                            case "instagram":
+                                jQuery("#feed").append(_.template(instagram_template,{i:i}));
+                                break;
+                            default:
+                        }
                     });
 
-                    switch(i.author){
-                        case "twitter":
-                            jQuery("#feed").append(_.template(twitter_template,{i:i}));
-                            break;
-                        case "facebook":
-                            jQuery("#feed").append(_.template(facebook_template,{i:i}));
-                            break;
-                        case "instagram":
-                            jQuery("#feed").append(_.template(instagram_template,{i:i}));
-                            break;
-                        default:
-                    }
+                   
                 });
-
-               
             });
-        });
-    </script>
+        </script>
 
-    <script type="text/html" id='twitter_template'>
-        <li class="socialitem socialitem-twitter">
-            <time datetime="<%= i.date.toISOString() %>" pubdate class="socialitem-publishdate">
-                <%= jQuery.timeago(i.date.toDateString()) %>
-            </time>
-               <h3 class="socialitem-title"><%= i.title %></h3>
-        </li>
-    </script>
+        <script type="text/html" id='twitter_template'>
+            <li class="socialitem socialitem-twitter">
+                <time datetime="<%= i.date.toISOString() %>" pubdate class="socialitem-publishdate">
+                    <%= jQuery.timeago(i.date.toDateString()) %>
+                </time>
+                   <h3 class="socialitem-title"><%= i.title %></h3>
+            </li>
+        </script>
 
-    <script type="text/html" id='facebook_template'>
-        <li class="socialitem socialitem-facebook">
-            <time datetime="<%= i.date.toISOString() %>" pubdate class="socialitem-publishdate">
-                <%= jQuery.timeago(i.date.toDateString()) %>
-            </time>
-               <h3 class="socialitem-title"><%= i.title %></h3>
-        </li>
-    </script>
+        <script type="text/html" id='facebook_template'>
+            <li class="socialitem socialitem-facebook">
+                <time datetime="<%= i.date.toISOString() %>" pubdate class="socialitem-publishdate">
+                    <%= jQuery.timeago(i.date.toDateString()) %>
+                </time>
+                   <h3 class="socialitem-title"><%= i.title %></h3>
+            </li>
+        </script>
 
-    <script type="text/html" id='instagram_template'>
-        <li class="socialitem socialitem-instagram">
-            <time datetime="<%= i.date.toISOString() %>" pubdate class="socialitem-publishdate">
-                <%= jQuery.timeago(i.date.toDateString()) %></time>
-                <img src="<%= i['media:content'].url %>" />
-                <h3 class="socialitem-title"><%= i.title %></h3>
-        </li>
-    </script>
+        <script type="text/html" id='instagram_template'>
+            <li class="socialitem socialitem-instagram">
+                <time datetime="<%= i.date.toISOString() %>" pubdate class="socialitem-publishdate">
+                    <%= jQuery.timeago(i.date.toDateString()) %></time>
+                    <img src="<%= i['media:content'].url %>" />
+                    <h3 class="socialitem-title"><%= i.title %></h3>
+            </li>
+        </script>
+
+    </body>
+</html>
